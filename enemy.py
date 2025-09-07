@@ -88,4 +88,8 @@ class Enemy(pygame.sprite.Sprite):
         if self.time_passed == self.fire_rate:
             EnemyBullet(self.rect.centerx, self.rect.centery, self.bullet_group, self)
             self.time_passed = 0
+
+    def death_animation(self):
+        """run the death animation for the enemy"""
+        self.kill() #TODO implement this, won't happen until later when animations are actually created
         

@@ -1,5 +1,7 @@
 import pygame
 
+#TODO, figure this stuff out
+
 class MeleeAtk(pygame.sprite.Sprite):
     """A class to represent a melee attack that was performed by the player"""
     def __init__(self, x, y, melee_group, player):
@@ -7,8 +9,8 @@ class MeleeAtk(pygame.sprite.Sprite):
         super().__init__()
 
         #set constant variables
-        self.VELOCITY = 40
-        self.RANGE = 32
+        self.VELOCITY = 60
+        self.RANGE = 50
 
         #load in image and get rect
         self.image = pygame.image.load("assets/melee_atk.png")
