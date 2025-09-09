@@ -15,6 +15,7 @@ pygame.init()
 
 #use 2d vectors
 vector = pygame.math.Vector2
+global running #set global running to properly interface with pause menus
 
 #set display surface
 #a tile is 32 x 32; currently 40 tiles wide and 23 tiles high
@@ -134,6 +135,8 @@ class Game():
         if collide_list_d:
             for i in collide_list_d:
                 self.player.health += 15
+                if self.player.health > self.player.STARTING_HEALTH:
+                    self.player.health == self.player.STARTING_HEALTH
 
         #check for collisions between enemies and health pickups
         collide_dict_d = pygame.sprite.groupcollide(self.enemy_group, self.health_group, False, True, pygame.sprite.collide_mask)
@@ -157,7 +160,40 @@ class Game():
 
     def main_menu(self):
         """Display the main menu"""
-        pass
+        global running
+
+        #set colors
+        WHITE = (255, 255, 255)
+
+        #render text
+        name_text = pixel_font.render("untitled_game", True, WHITE)
+        name_rect = name_text.get_rect()
+        name_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
+
+        start_text = pixel_font.render("Press Enter to Start", True, WHITE)
+        start_rect = start_text.get_rect()
+        start_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2 + 64)
+
+        #blit text 
+        DISPLAY_SURFACE.fill((0,0,0))
+        DISPLAY_SURFACE.blit(name_text, name_rect)
+        DISPLAY_SURFACE.blit(start_text, start_rect)
+
+        #update the display and pause the game
+        pygame.display.update()
+        is_paused = True
+        while is_paused:
+            for event in pygame.event.get():
+                #check for user start
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RETURN:
+                        is_paused = False
+
+                #check for user quit
+                if event.type == pygame.QUIT:
+                    is_paused = False
+                    running = False
+
 
     def death_screen(self):
         """Display the death screen"""
@@ -171,7 +207,7 @@ class Game():
         """Completley reset the game"""
         pass
 
-"""DEFINE GROUPS"""
+"""DEFsINE GROUPS"""
 my_main_tile_group = pygame.sprite.Group()
 my_platform_group = pygame.sprite.Group()
 my_player_group = pygame.sprite.Group()
@@ -226,6 +262,7 @@ for i in range(len(tile_map)):
 my_enemy_group.add(Enemy(WINDOW_WIDTH - 100, 0, my_platform_group, my_enemy_group, my_enemy_bullet_group, my_player, 2, 5))
 
 my_game = Game(my_player, my_player_bullet_group, my_melee_group, my_enemy_group, my_enemy_bullet_group, my_ammo_group, my_health_group)
+my_game.main_menu()
 
 """MAIN GAME LOOP"""
 running = True

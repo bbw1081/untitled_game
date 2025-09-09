@@ -1,31 +1,36 @@
 import pygame
 
-#TODO, figure this stuff out
-
 class MeleeAtk(pygame.sprite.Sprite):
     """A class to represent a melee attack that was performed by the player"""
-    def __init__(self, x, y, melee_group, player):
+    def __init__(self, melee_group, player):
         """Initialize the melee attack"""
         super().__init__()
 
-        #set constant variables
-        self.VELOCITY = 60
-        self.RANGE = 50
+        self.frame_count = 0
+
+        self.player = player
 
         #load in image and get rect
-        self.image = pygame.image.load("assets/melee_atk.png")
-        if player.velocity.x < 0: #if the player is facing left flip the direction
-            self.VELOCITY = -1*self.VELOCITY
+        self.image = pygame.transform.scale(pygame.image.load("assets/melee_atk.png"), (64, 32))
         self.rect = self.image.get_rect()
-        self.rect.center = (x, y)
-        self.startingx = x
-        self.startingy = y
+        if self.player.velocity.x > 0: #moving right
+            self.rect.bottomleft = (self.player.rect.right, self.player.rect.bottom)
+        else: #moving left
+            self.rect.bottomright = (self.player.rect.left, self.player.rect.bottom)
+
+        self.mask = pygame.mask.from_surface(self.image)
 
         melee_group.add(self)
 
     def update(self):
         """Update the melee attack's location"""
-        self.rect.x += self.VELOCITY
-        #if the melee attack has passed RANGE, kill it
-        if abs(self.rect.x - self.startingx) > self.RANGE:
+        self.frame_count += 1
+        if self.frame_count >= 2:
             self.kill()
+        else:
+            if self.player.velocity.x > 0: #moving right
+                self.rect.bottomleft = (self.player.rect.right, self.player.rect.bottom)
+            else: #moving left
+                self.rect.bottomright = (self.player.rect.left, self.player.rect.bottom)
+
+        

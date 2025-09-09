@@ -102,7 +102,7 @@ class Player(pygame.sprite.Sprite):
 
     def melee_atk(self):
         """Make the player do a melee attack"""
-        MeleeAtk(self.rect.centerx, self.rect.centery, self.melee_group, self)
+        MeleeAtk(self.melee_group, self)
 
     def death_animation(self):
         """Play the player's death animation"""
