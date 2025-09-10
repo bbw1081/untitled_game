@@ -2,7 +2,7 @@ import pygame
 
 class Tile(pygame.sprite.Sprite):
     """A class to represent a tile on the playing field"""
-    def __init__(self, x, y, tile_code, main_group, sub_group=None):
+    def __init__(self, x, y, tile_code, main_group, sub_group=None, water_group=None):
         super().__init__()
         #load in image
         if tile_code == 1: #dirt
@@ -10,7 +10,6 @@ class Tile(pygame.sprite.Sprite):
         elif tile_code == 2: #grass
             self.image = pygame.transform.scale(pygame.image.load("assets/grass.png"), (32, 32))
             sub_group.add(self)
-
 
         #add tile to main group
         main_group.add(self)

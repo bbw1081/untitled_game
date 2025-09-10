@@ -21,7 +21,8 @@ class Player(pygame.sprite.Sprite):
         self.VERTICAL_ACCEL = 0.8 #gravity
         self.VERTICAL_JUMP_SPEED = 18 #determines how high the player can jump
         self.STARTING_HEALTH = 100
-        self.STARTING_AMMO = 35
+        self.STARTING_AMMO = 10
+        self.MAX_AMMO = 25
         
         #load image and get rect
         self.image = pygame.transform.scale(pygame.image.load("assets/player.png"), (32, 32))
@@ -88,6 +89,13 @@ class Player(pygame.sprite.Sprite):
                 self.position.y = collided_platforms[0].rect.top + 1 #add one to keep player on the ground
                 self.velocity.y = 0
 
+        #collision check between player and platforms when jumping
+        if self.velocity.y < 0: #moving up
+            collided_platforms = pygame.sprite.spritecollide(self, self.platform_group, False, pygame.sprite.collide_mask)
+            if collided_platforms:
+                self.position.y = collided_platforms[0].rect.bottom + 34
+                self.velocity.y = 0
+
     def jump(self):
         """Make the player jump"""
         #player can only jump if on the ground
@@ -106,4 +114,20 @@ class Player(pygame.sprite.Sprite):
 
     def death_animation(self):
         """Play the player's death animation"""
-        pass
+        pass #TODO implement animations
+
+    def reset_pos(self):
+        """Reset the player's position"""
+        #reset kinematics vectors
+        self.position = vector(self.startingx, self.startingy)
+        self.velocity = vector(0, 0)
+        self.accel = vector(0, self.VERTICAL_ACCEL)
+
+        #reset rect position
+        self.rect.bottomleft = self.position
+
+    def reset(self):
+        """Fully reset player"""
+        self.health = self.STARTING_HEALTH
+        self.ammo = self.STARTING_AMMO
+        self.reset_pos()

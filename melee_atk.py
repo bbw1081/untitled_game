@@ -11,7 +11,7 @@ class MeleeAtk(pygame.sprite.Sprite):
         self.player = player
 
         #load in image and get rect
-        self.image = pygame.transform.scale(pygame.image.load("assets/melee_atk.png"), (64, 32))
+        self.image = pygame.transform.scale(pygame.image.load("assets/melee_atk.png"), (32*2.5, 32))
         self.rect = self.image.get_rect()
         if self.player.velocity.x > 0: #moving right
             self.rect.bottomleft = (self.player.rect.right, self.player.rect.bottom)

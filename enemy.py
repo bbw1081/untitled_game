@@ -14,6 +14,7 @@ class Enemy(pygame.sprite.Sprite):
 
         #set constants
         self.VERTICAL_ACCEL = 2 #gravity
+        self.VERTICAL_JUMP_SPEED = 27
 
         #load image and get rect
         self.image = pygame.transform.scale(pygame.image.load("assets/enemy.png"), (32, 32))
@@ -39,6 +40,9 @@ class Enemy(pygame.sprite.Sprite):
         self.fire_rate = random.randint(min_speed, max_speed)
         self.frame_count = 0
         self.time_passed = 0
+
+        self.jump_rate = self.fire_rate - 1
+        self.jumped = False
         
         #add self to enemy group
         enemy_group.add(self)
@@ -48,6 +52,7 @@ class Enemy(pygame.sprite.Sprite):
         self.move()
         self.check_collisions()
         self.check_fire()
+        self.check_jump()
 
     def move(self):
         """Move the enemy based on simple AI"""
@@ -73,10 +78,17 @@ class Enemy(pygame.sprite.Sprite):
 
     def check_collisions(self):
         """Check for collisions with the ground"""
-        collided_platforms = pygame.sprite.spritecollide(self, self.platform_group, False)
-        if collided_platforms:
-            self.position.y = collided_platforms[0].rect.top + 1
-            self.velocity.y = 0
+        if self.velocity.y > 0: #moving down
+            collided_platforms = pygame.sprite.spritecollide(self, self.platform_group, False)
+            if collided_platforms:
+                self.position.y = collided_platforms[0].rect.top + 1
+                self.velocity.y = 0
+        
+        if self.velocity.y < 0: #moving up
+            collided_platforms = pygame.sprite.spritecollide(self, self.platform_group, False)
+            if collided_platforms:
+                self.position.y = collided_platforms[0].rect.bottom + 34
+                self.velocity.y = 0
 
     def check_fire(self):
         """Checks if the enemy should fire their weapon"""
@@ -88,6 +100,15 @@ class Enemy(pygame.sprite.Sprite):
         if self.time_passed == self.fire_rate:
             EnemyBullet(self.rect.centerx, self.rect.centery, self.bullet_group, self)
             self.time_passed = 0
+            self.jumped = False
+
+    def check_jump(self):
+        """Checks to see if the enemy should jump"""
+        #if the player is above the enemy, if the jump rate is met, and if the enemy hasn't jumped this cycle
+        if (self.player.position.y < self.position.y) and (self.time_passed == self.jump_rate) and not self.jumped:
+            if pygame.sprite.spritecollide(self, self.platform_group, False, pygame.sprite.collide_mask): #if on ground
+                self.velocity.y = -1 * self.VERTICAL_JUMP_SPEED
+                self.jumped = True
 
     def death_animation(self):
         """run the death animation for the enemy"""
