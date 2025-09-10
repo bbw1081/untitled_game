@@ -2,7 +2,7 @@ import pygame
 
 class Tile(pygame.sprite.Sprite):
     """A class to represent a tile on the playing field"""
-    def __init__(self, x, y, tile_code, main_group, sub_group=None, water_group=None):
+    def __init__(self, x, y, tile_code, main_group, sub_group=None):
         super().__init__()
         #load in image
         if tile_code == 1: #dirt
