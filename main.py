@@ -206,7 +206,7 @@ class Game():
         DISPLAY_SURFACE.blit(start_text, start_rect)
 
         if version_text:
-            version_text = pixel_font.render(VERSION_NUMBER, True, WHITE)
+            version_text = pixel_font.render(version_text, True, WHITE)
             version_rect = version_text.get_rect()
             version_rect.bottomright = (WINDOW_WIDTH, WINDOW_HEIGHT)
             DISPLAY_SURFACE.blit(version_text, version_rect)
@@ -225,7 +225,11 @@ class Game():
                             self.reset_game()
                         else:
                             self.start_next_round()
-
+                    #display controls screen
+                    if event.key == pygame.K_SPACE: 
+                        is_paused = False
+                        self.menu("Move -> A/D or Left/Right; Jump -> Spacebar", 
+                                  "Shoot -> W/Up; Melee -> S/Down", "Press enter to begin")
                 #check for user quit
                 if event.type == pygame.QUIT:
                     is_paused = False
@@ -306,7 +310,7 @@ for i in range(len(tile_map)):
             
 """CREATE GAME INSTANCE"""
 my_game = Game(my_player, my_player_bullet_group, my_melee_group, my_enemy_group, my_enemy_bullet_group, my_ammo_group, my_health_group, my_platform_group)
-my_game.menu("untitled_game", "press enter to begin", VERSION_NUMBER)
+my_game.menu("untitled_game", "press enter to begin or space for controls", VERSION_NUMBER)
 
 """MAIN GAME LOOP"""
 running = True
