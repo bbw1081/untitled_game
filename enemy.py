@@ -28,10 +28,7 @@ class Enemy(pygame.sprite.Sprite):
 
         #load in kinematcs
         self.position = vector(self.rect.x, self.rect.y)
-        if self.position.x < self.player.position.x:
-            self.direction = 1
-        else:
-            self.direction = -1
+        self.direction = random.choice((-1, 1))
         self.speed = random.randint(min_speed, max_speed)
         self.velocity = vector(self.direction*self.speed, 0)
         self.accel = vector(0, self.VERTICAL_ACCEL)
@@ -55,13 +52,7 @@ class Enemy(pygame.sprite.Sprite):
         self.check_jump()
 
     def move(self):
-        """Move the enemy based on simple AI"""
-        #find the direction to the player
-        if self.position.x < self.player.position.x:
-            self.direction = 1
-        else:
-            self.direction = -1
-        
+        """Move the enemy based on simple AI"""        
         #update kinematics values
         self.velocity.x = self.direction*self.speed
         self.velocity += self.accel
@@ -69,9 +60,9 @@ class Enemy(pygame.sprite.Sprite):
 
         #stop the enemy if they are hitting the wall
         if self.position.x < 0:
-            self.position.x = 0
+            self.direction = 1
         if self.position.x > WINDOW_WIDTH - 32:
-            self.position.x = WINDOW_WIDTH - 32
+            self.direction = -1
 
         #update rect
         self.rect.bottomleft = self.position

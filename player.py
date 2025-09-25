@@ -17,7 +17,7 @@ class Player(pygame.sprite.Sprite):
 
         #set constants
         self.HORIZONTAL_ACCEL = 2
-        self.HORIZONTAL_FRICTION = 0.1
+        self.HORIZONTAL_FRICTION = 0.2
         self.VERTICAL_ACCEL = 0.8 #gravity
         self.VERTICAL_JUMP_SPEED = 18 #determines how high the player can jump
         self.STARTING_HEALTH = 100

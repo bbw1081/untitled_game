@@ -174,12 +174,12 @@ class Game():
 
         #create the enemies
         for i in range(self.round):
-            if self.round >= 4:
+            if self.round >= 6:
                 Enemy(random.randint(32, WINDOW_WIDTH - 32), -100, self.platform_group, 
-                  self.enemy_group, self.enemy_bullet_group, self.player, 5, 9)
+                  self.enemy_group, self.enemy_bullet_group, self.player, 6, 8)
             else:
                 Enemy(random.randint(32, WINDOW_WIDTH - 32), -100, self.platform_group, 
-                    self.enemy_group, self.enemy_bullet_group, self.player, 2 + self.round, 5+self.round)
+                    self.enemy_group, self.enemy_bullet_group, self.player, 0 + self.round, 3+self.round)
             
         #reset the player's position
         self.player.reset_pos()
