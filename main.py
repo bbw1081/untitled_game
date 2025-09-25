@@ -17,7 +17,7 @@ vector = pygame.math.Vector2
 global running 
 
 #version number for main menu text
-VERSION_NUMBER = "PRE_RELEASEv0.5.0"
+VERSION_NUMBER = "PRE_RELEASEv0.5.3"
 
 #set display surface
 #a tile is 32 x 32; currently 40 tiles wide and 23 tiles high
