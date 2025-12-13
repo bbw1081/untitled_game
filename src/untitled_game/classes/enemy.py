@@ -1,13 +1,11 @@
-import pygame, random
-from enemy_bullet import EnemyBullet
+import pygame, random, config
+from classes.enemy_bullet import EnemyBullet
 
 vector = pygame.math.Vector2
-WINDOW_WIDTH = 1280
-WINDOW_HEIGHT = 736
-FPS = 60
 
 class Enemy(pygame.sprite.Sprite):
     """A class to represnt an enemy"""
+
     def __init__(self, x, y, platform_group, enemy_group, bullet_group, player, min_speed, max_speed):
         """Initialize the enemy character"""
         super().__init__()
@@ -17,7 +15,7 @@ class Enemy(pygame.sprite.Sprite):
         self.VERTICAL_JUMP_SPEED = 27
 
         #load image and get rect
-        self.image = pygame.transform.scale(pygame.image.load("assets/enemy.png"), (32, 32))
+        self.image = pygame.transform.scale(pygame.image.load("src/untitled_game/assets/enemy.png"), (32, 32))
         self.rect = self.image.get_rect()
         self.rect.bottomleft = (x, y)
         
@@ -61,7 +59,7 @@ class Enemy(pygame.sprite.Sprite):
         #stop the enemy if they are hitting the wall
         if self.position.x < 0:
             self.direction = 1
-        if self.position.x > WINDOW_WIDTH - 32:
+        if self.position.x > config.WINDOW_WIDTH - 32:
             self.direction = -1
 
         #update rect
@@ -84,7 +82,7 @@ class Enemy(pygame.sprite.Sprite):
     def check_fire(self):
         """Checks if the enemy should fire their weapon"""
         self.frame_count += 1
-        if self.frame_count == FPS:
+        if self.frame_count == config.FPS:
             self.frame_count = 0
             self.time_passed += 1
 

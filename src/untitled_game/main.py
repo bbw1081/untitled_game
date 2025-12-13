@@ -1,11 +1,8 @@
-import pygame, random, config
+import pygame, config
 
-from player import Player
-from tile import Tile
-from enemy import Enemy
-from ammo import Ammo
-from health_pickup import HealthPickup
-from game import Game
+from classes.player import Player
+from classes.tile import Tile
+from classes.game import Game
 
 def main():
 

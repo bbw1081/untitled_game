@@ -1,16 +1,14 @@
-import pygame
+import pygame, config
 
-from player_bullet import PlayerBullet
-from melee_atk import MeleeAtk
+from classes.player_bullet import PlayerBullet
+from classes.melee_atk import MeleeAtk
 
 #use 2d vectors
 vector = pygame.math.Vector2
 
-WINDOW_WIDTH = 1280
-WINDOW_HEIGHT = 736
-
 class Player(pygame.sprite.Sprite):
     """A class to represent the player"""
+
     def __init__(self, x, y, player_group, platform_group, bullet_group, melee_group):
         """Initialize the player character"""
         super().__init__()
@@ -25,7 +23,7 @@ class Player(pygame.sprite.Sprite):
         self.MAX_AMMO = 25
         
         #load image and get rect
-        self.image = pygame.transform.scale(pygame.image.load("assets/player.png"), (32, 32))
+        self.image = pygame.transform.scale(pygame.image.load("src/untitled_game/assets/player.png"), (32, 32))
         self.rect = self.image.get_rect()
         self.rect.bottomleft = (x, y)
         self.startingx = x
@@ -75,8 +73,8 @@ class Player(pygame.sprite.Sprite):
         #stop the player if they are hitting the wall
         if self.position.x < 0:
             self.position.x = 0
-        if self.position.x > WINDOW_WIDTH - 32:
-            self.position.x = WINDOW_WIDTH - 32
+        if self.position.x > config.WINDOW_WIDTH - 32:
+            self.position.x = config.WINDOW_WIDTH - 32
 
         self.rect.bottomleft = self.position
 

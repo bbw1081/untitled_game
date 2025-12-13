@@ -1,15 +1,14 @@
-import pygame
-
-FPS = 60
+import pygame, config
 
 class HealthPickup(pygame.sprite.Sprite):
     """A class to represent a health pickup dropped by an enemy"""
+
     def __init__(self, x, y, health_group):
         """Initialize the Health pickup"""
         super().__init__()
 
         #load image and get rect
-        self.image = pygame.image.load("assets/health_pickup.png")
+        self.image = pygame.image.load("src/untitled_game/assets/health_pickup.png")
         self.rect = self.image.get_rect()
         self.rect.bottomleft = (x, y)
 
@@ -27,7 +26,7 @@ class HealthPickup(pygame.sprite.Sprite):
     def update(self):
         """Check to see if the health pack has timed out"""
         self.frame_count += 1
-        if self.frame_count == FPS:
+        if self.frame_count == config.FPS:
             self.time_passed +=1
         
         if self.time_passed == self.kill_time:

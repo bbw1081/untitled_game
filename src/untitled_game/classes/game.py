@@ -1,8 +1,8 @@
 import pygame, random, config
 
-from ammo import Ammo
-from health_pickup import HealthPickup
-from enemy import Enemy
+from classes.ammo import Ammo
+from classes.health_pickup import HealthPickup
+from classes.enemy import Enemy
 
 class Game():
     """A class to handle all of the high-level game functions"""
@@ -10,7 +10,7 @@ class Game():
         """Initialize the game"""
 
         #load in game assets
-        self.pixel_font = pygame.font.Font("assets/PixelIntv-OPxd.ttf", 24)
+        self.pixel_font = pygame.font.Font("src/untitled_game/assets/PixelIntv-OPxd.ttf", 24)
 
         #create game variables
         self.score = 0

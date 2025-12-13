@@ -1,15 +1,14 @@
-import pygame
-
-FPS = 60
+import pygame, config
 
 class Ammo(pygame.sprite.Sprite):
-    """A class to represent an ammo pickup on the ground"""
+    """Represents an ammo pickup on the ground"""
+
     def __init__(self, x, y, ammo_group):
         """Initialzie the ammo"""
         super().__init__()
 
         #load image and get rect
-        self.image = pygame.image.load("assets/ammo_pickup.png")
+        self.image = pygame.image.load("src/untitled_game/assets/ammo_pickup.png")
         self.rect = self.image.get_rect()
         self.rect.bottomleft = (x, y)
 
@@ -27,7 +26,7 @@ class Ammo(pygame.sprite.Sprite):
     def update(self):
         """Destroy the ammo after a set period of time"""
         self.frame_count += 1
-        if self.frame_count == FPS:
+        if self.frame_count == config.FPS:
             self.time_passed += 1
         
         if self.time_passed == self.kill_time:
