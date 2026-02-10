@@ -1,4 +1,4 @@
-import pygame
+import pygame, config
 
 class MeleeAtk(pygame.sprite.Sprite):
     """A class to represent a melee attack that was performed by the player"""
@@ -13,7 +13,7 @@ class MeleeAtk(pygame.sprite.Sprite):
         self.player = player
 
         #load in image and get rect
-        self.image = pygame.transform.scale(pygame.image.load("src/untitled_game/assets/melee_atk.png"), (32*2.5, 32))
+        self.image = config.melee_attack_image
         self.rect = self.image.get_rect()
         if self.player.velocity.x > 0: #moving right
             self.rect.bottomleft = (self.player.rect.right, self.player.rect.bottom)

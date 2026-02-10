@@ -15,7 +15,7 @@ class Enemy(pygame.sprite.Sprite):
         self.VERTICAL_JUMP_SPEED = 27
 
         #load image and get rect
-        self.image = pygame.transform.scale(pygame.image.load("src/untitled_game/assets/enemy.png"), (32, 32))
+        self.image = config.enemy_image
         self.rect = self.image.get_rect()
         self.rect.bottomleft = (x, y)
         

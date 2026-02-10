@@ -1,14 +1,14 @@
-import pygame, config
+import pygame, config, asyncio
 
 from classes.player import Player
 from classes.tile import Tile
 from classes.game import Game
 
-def main():
+async def main():
 
     """INITIALIZE THE GAME"""
     #initialize pygame
-    pygame.init()
+    # pygame.init()
     #set display
     DISPLAY_SURFACE = pygame.display.set_mode((config.WINDOW_WIDTH, config.WINDOW_HEIGHT))
     pygame.display.set_caption("untitled_game")
@@ -96,10 +96,11 @@ def main():
         #update display and tick clock
         pygame.display.update()
         CLOCK.tick(config.FPS)
+        await asyncio.sleep(0)
 
 if (__name__ == "__main__"):
     #run main function
-    main()
+    asyncio.run(main())
 
     #once main function breaks, quit pygame
     pygame.quit()

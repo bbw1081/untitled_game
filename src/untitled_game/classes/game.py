@@ -10,7 +10,7 @@ class Game():
         """Initialize the game"""
 
         #load in game assets
-        self.pixel_font = pygame.font.Font("src/untitled_game/assets/PixelIntv-OPxd.ttf", 24)
+        self.pixel_font = config.pixel_font
 
         #create game variables
         self.score = 0

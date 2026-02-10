@@ -8,7 +8,7 @@ class HealthPickup(pygame.sprite.Sprite):
         super().__init__()
 
         #load image and get rect
-        self.image = pygame.image.load("src/untitled_game/assets/health_pickup.png")
+        self.image = config.health_pickup_image
         self.rect = self.image.get_rect()
         self.rect.bottomleft = (x, y)
 

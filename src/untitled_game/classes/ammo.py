@@ -8,7 +8,7 @@ class Ammo(pygame.sprite.Sprite):
         super().__init__()
 
         #load image and get rect
-        self.image = pygame.image.load("src/untitled_game/assets/ammo_pickup.png")
+        self.image = config.ammo_pickup_image
         self.rect = self.image.get_rect()
         self.rect.bottomleft = (x, y)
 

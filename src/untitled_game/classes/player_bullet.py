@@ -1,4 +1,4 @@
-import pygame
+import pygame, config
 
 class PlayerBullet(pygame.sprite.Sprite):
     """A class to represent a bullet that was fired by the player"""
@@ -12,7 +12,7 @@ class PlayerBullet(pygame.sprite.Sprite):
         self.RANGE = 500
 
         #load image and get rect
-        self.image = pygame.image.load("src/untitled_game/assets/bullet.png")
+        self.image = config.bullet_image
         if player.velocity.x < 0: #if the player is facing left flip the direction
             self.image = pygame.transform.flip(self.image, True, False)
             self.VELOCITY = -1*self.VELOCITY

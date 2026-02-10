@@ -1,7 +1,10 @@
+import pygame
+
+pygame.init()
 """Container for project global variables"""
 
 #version number for main menu
-VERSION_NUMBER = "PRE_RELEASEv0.5.5"
+VERSION_NUMBER = "PRE_RELEASEv0.5.6"
 
 #game running variable (set to false when user quits)
 running = True
@@ -42,3 +45,14 @@ tile_map_lvl1 = [
 [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
 [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ]
+
+#load in assets
+pixel_font = pygame.font.Font("assets/PixelIntv-OPxd.ttf", 24)
+ammo_pickup_image = pygame.image.load("assets/ammo_pickup.png")
+bullet_image = pygame.image.load("assets/bullet.png")
+enemy_image = pygame.transform.scale(pygame.image.load("assets/enemy.png"), (32, 32))
+health_pickup_image = pygame.image.load("assets/health_pickup.png")
+melee_attack_image = pygame.transform.scale(pygame.image.load("assets/melee_atk.png"), (32*2.5, 32))
+player_image = pygame.transform.scale(pygame.image.load("assets/player.png"), (32, 32))
+dirt_image = pygame.transform.scale(pygame.image.load("assets/dirt.png"), (32, 32))
+grass_image = pygame.transform.scale(pygame.image.load("assets/grass.png"), (32, 32))

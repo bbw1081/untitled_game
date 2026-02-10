@@ -23,7 +23,7 @@ class Player(pygame.sprite.Sprite):
         self.MAX_AMMO = 25
         
         #load image and get rect
-        self.image = pygame.transform.scale(pygame.image.load("src/untitled_game/assets/player.png"), (32, 32))
+        self.image = config.player_image
         self.rect = self.image.get_rect()
         self.rect.bottomleft = (x, y)
         self.startingx = x
