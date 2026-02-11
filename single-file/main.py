@@ -1,5 +1,13 @@
 import pygame, asyncio, random
 
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "pygame-ce",
+#     "random",
+#     "asyncio"
+# ]
+
 pygame.init()
 
 """Global vars"""
@@ -48,15 +56,15 @@ tile_map_lvl1 = [
 ]
 
 #load in assets
-pixel_font = pygame.font.Font("assets/PixelIntv-OPxd.ttf", 24)
-ammo_pickup_image = pygame.image.load("assets/ammo_pickup.png")
-bullet_image = pygame.image.load("assets/bullet.png")
-enemy_image = pygame.transform.scale(pygame.image.load("assets/enemy.png"), (32, 32))
-health_pickup_image = pygame.image.load("assets/health_pickup.png")
-melee_attack_image = pygame.transform.scale(pygame.image.load("assets/melee_atk.png"), (32*2.5, 32))
-player_image = pygame.transform.scale(pygame.image.load("assets/player.png"), (32, 32))
-dirt_image = pygame.transform.scale(pygame.image.load("assets/dirt.png"), (32, 32))
-grass_image = pygame.transform.scale(pygame.image.load("assets/grass.png"), (32, 32))
+pixel_font = pygame.font.Font("PixelIntv-OPxd.ttf", 24)
+ammo_pickup_image = pygame.image.load("ammo_pickup.png")
+bullet_image = pygame.image.load("bullet.png")
+enemy_image = pygame.transform.scale(pygame.image.load("enemy.png"), (32, 32))
+health_pickup_image = pygame.image.load("health_pickup.png")
+melee_attack_image = pygame.transform.scale(pygame.image.load("melee_atk.png"), (32*2.5, 32))
+player_image = pygame.transform.scale(pygame.image.load("player.png"), (32, 32))
+dirt_image = pygame.transform.scale(pygame.image.load("dirt.png"), (32, 32))
+grass_image = pygame.transform.scale(pygame.image.load("grass.png"), (32, 32))
 
 vector = pygame.math.Vector2
 
