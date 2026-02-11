@@ -4,6 +4,17 @@
 
 A simple 2d style game made in PyGame. I am not an artist so "proper" assets may or may not be coming
 
+### DEPENDENCIES
+
+- python 3.12.3
+- pygame 2.5.2 (`pip install pygame`)
+
+## HOW TO RUN GAME
+
+1. Clone repository
+2. download dependencies
+3. run 'main.py'
+
 ## HOW TO PLAY
 
 ### Gameplay
