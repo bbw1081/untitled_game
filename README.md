@@ -7,7 +7,7 @@ A simple 2d style game made in PyGame. I am not an artist so "proper" assets may
 ### DEPENDENCIES
 
 - python 3.12.3
-- pygame 2.5.2 (`pip install pygame`)
+- pygame-ce latest version (`pip install pygame-ce`)
 
 ## HOW TO RUN GAME
 
